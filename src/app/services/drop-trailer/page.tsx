@@ -12,7 +12,7 @@ export default function DropTrailerPage() {
       category="Specialized Services"
       title="Drop Trailer Services"
       intro="Flexible drop-and-hook support that helps your team load and unload freight without wasting time at the dock."
-      heroImage="/images/services/last_mile.png"
+      heroImage="/images/services/last_mile.webp"
       heroAlt="Drop trailer services"
       stats={[
         { value: "Flexible", label: "Trailer Use" },

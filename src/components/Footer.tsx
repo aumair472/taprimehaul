@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import Newsletter from "./Newsletter";
+import { CONTACT_EMAILS } from "@/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,7 +23,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm font-medium leading-relaxed text-text-muted">
-              Pioneering the future of logistics with tech-driven solutions. SwiftLogix provides reliable, efficient, and transparent supply chain management for global businesses.
+              Pioneering the future of logistics with tech-driven solutions. TA Prime Haul provides reliable, efficient, and transparent supply chain management for global businesses.
             </p>
             <div className="flex items-center gap-4">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, idx) => (
@@ -77,9 +78,18 @@ const Footer = () => {
                 <Phone className="h-5 w-5 text-primary" />
                 <span>+1 (800) 555-SWIFT</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-primary" />
-                <span>contact@taprimehaul.com</span>
+              <li className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-primary shrink-0" />
+                  <a href={`mailto:${CONTACT_EMAILS.primary}`} className="hover:text-primary transition-colors">
+                    {CONTACT_EMAILS.primary}
+                  </a>
+                </div>
+                <div className="ml-8">
+                  <a href={`mailto:${CONTACT_EMAILS.secondary}`} className="hover:text-primary transition-colors">
+                    {CONTACT_EMAILS.secondary}
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

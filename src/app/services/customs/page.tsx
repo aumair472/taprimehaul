@@ -12,7 +12,7 @@ export default function CustomsPage() {
       category="Specialized Services"
       title="Customs Clearance"
       intro="Cross-border logistics support designed to simplify documentation, compliance, and international movement."
-      heroImage="/images/services/ocean_freight.png"
+      heroImage="/images/services/ocean_freight.webp"
       heroAlt="Customs clearance logistics"
       stats={[
         { value: "Cross-Border", label: "Support" },

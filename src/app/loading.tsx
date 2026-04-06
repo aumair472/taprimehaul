@@ -35,7 +35,7 @@ export default function Loading() {
         </div>
         
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary/60">
-          Loading SwiftLogix
+          Loading TA Prime Haul
         </span>
       </div>
     </div>

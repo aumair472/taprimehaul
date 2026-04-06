@@ -12,7 +12,7 @@ export default function FullTruckloadPage() {
       category="Freight Brokerage Services"
       title="Full Truckload (FTL)"
       intro="Best for large shipments requiring a dedicated truck and direct transit from pickup to delivery."
-      heroImage="/images/services/road_freight.png"
+      heroImage="/images/services/road_freight.webp"
       heroAlt="Full truckload freight"
       stats={[
         { value: "Direct", label: "No-Stop Transit" },

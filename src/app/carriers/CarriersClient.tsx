@@ -60,7 +60,7 @@ export default function CarriersClient() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-dark pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/carrier_hero_bg.png"
+            src="/images/carrier_hero_bg.webp"
             alt="Truck on highway"
             fill
             className="object-cover opacity-20"
@@ -127,7 +127,7 @@ export default function CarriersClient() {
               Carrier Benefits
             </div>
             <h2 className="mb-4 text-3xl font-bold text-dark font-syne sm:text-4xl lg:text-6xl tracking-tight">
-              Why Carriers Choose SwiftLogix
+              Why Carriers Choose TA Prime Haul
             </h2>
             <p className="max-w-2xl text-lg font-medium text-gray-500">
               We&apos;re committed to your success. Here&apos;s what you get when you partner with us.
@@ -206,7 +206,7 @@ export default function CarriersClient() {
               className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] shadow-2xl"
             >
               <Image
-                src="/images/carrier_requirements.png"
+                src="/images/carrier_requirements.webp"
                 alt="Logistics warehouse"
                 fill
                 className="object-cover"
@@ -235,7 +235,7 @@ export default function CarriersClient() {
                 Ready to Hit the Road?
               </h2>
               <p className="mb-10 max-w-xl text-lg font-medium text-white/90">
-                Join thousands of carriers who trust SwiftLogix for consistent, well-paying loads. Start your journey with us today.
+                Join thousands of carriers who trust TA Prime Haul for consistent, well-paying loads. Start your journey with us today.
               </p>
               <Button size="lg" variant="outline" className="rounded-full border-2 border-white bg-white text-blue-600 hover:bg-white/90 px-10 sm:px-12 h-14 sm:h-16 text-lg font-bold shadow-xl shadow-black/10">
                 Apply Now <ArrowRight className="ml-2 h-5 w-5" />

@@ -36,7 +36,7 @@ export default function HomeClient() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero_bg.png"
+            src="/images/hero_bg.webp"
             alt="Logistics background"
             fill
             className="object-cover opacity-30"
@@ -260,7 +260,7 @@ export default function HomeClient() {
               >
                 <div className="aspect-[4/5] relative">
                   <Image
-                    src="/images/why_choose_us.png"
+                    src="/images/why_choose_us.webp"
                     alt="Logistics Expert"
                     fill
                     className="object-cover"
@@ -304,18 +304,18 @@ export default function HomeClient() {
               What Our Clients Say
             </h2>
             <p className="max-w-2xl text-lg font-medium text-text-muted">
-              Discover why thousands of businesses trust SwiftLogix as their preferred logistics partner for global success.
+              Discover why thousands of businesses trust TA Prime Haul as their preferred logistics partner for global success.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
             <TestimonialCard
-              quote="SwiftLogix has revolutionized our supply chain. Their real-time tracking is second to none, giving us complete peace of mind."
+              quote="TA Prime Haul has revolutionized our supply chain. Their real-time tracking is second to none, giving us complete peace of mind."
               author="Sarah Johnson"
               title="Supply Chain Director"
               company="Apex Manufacturing"
               rating={5}
-              avatar="/avatars/avatar_2.png"
+              avatar="/avatars/2.webp"
             />
             <TestimonialCard
               quote="The most reliable logistics partner we've ever worked with. Their customs expertise saved us thousands in potential delays."
@@ -323,7 +323,7 @@ export default function HomeClient() {
               title="Operations Manager"
               company="Global Trade Inc."
               rating={5}
-              avatar="/avatars/avatar_3.png"
+              avatar="/avatars/3.webp"
               delay={0.1}
             />
             <TestimonialCard
@@ -332,7 +332,7 @@ export default function HomeClient() {
               title="CEO"
               company="EuroRetail Solutions"
               rating={5}
-              avatar="/avatars/avatar_1.png"
+              avatar="/avatars/1.webp"
               delay={0.2}
             />
           </div>
@@ -357,7 +357,7 @@ export default function HomeClient() {
                 Ready to Transform <br /> Your Logistics?
               </h2>
               <p className="mb-10 text-lg font-medium text-white/90 leading-relaxed">
-                Join thousands of businesses streamlining their supply chain with SwiftLogix. Get a custom quote tailored to your business needs today.
+                Join thousands of businesses streamlining their supply chain with TA Prime Haul. Get a custom quote tailored to your business needs today.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 lg:justify-start">

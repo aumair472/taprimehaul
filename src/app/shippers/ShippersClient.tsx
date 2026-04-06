@@ -93,7 +93,7 @@ export default function ShippersClient() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-dark pt-28 pb-10">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/shipper_hero_bg.png"
+            src="/images/shipper_hero_bg.webp"
             alt="Logistics Dashboard"
             fill
             className="object-cover opacity-20"
@@ -267,7 +267,7 @@ export default function ShippersClient() {
               className="relative aspect-square w-full overflow-hidden rounded-[3rem] shadow-2xl"
             >
               <Image
-                src="/images/shipper_industries.png"
+                src="/images/shipper_industries.webp"
                 alt="Corporate Industries"
                 fill
                 className="object-cover"
@@ -295,7 +295,7 @@ export default function ShippersClient() {
                 Ready to Optimize <br /> Your Shipping?
               </h2>
               <p className="mb-12 max-w-2xl text-lg sm:text-xl font-medium text-white/90">
-                Get a free consultation and see how SwiftLogix can transform your logistics operations into a competitive advantage.
+                Get a free consultation and see how TA Prime Haul can transform your logistics operations into a competitive advantage.
               </p>
               <Button size="lg" variant="outline" className="rounded-full border-2 border-white bg-white text-emerald-700 hover:bg-white/90 px-10 sm:px-14 h-14 sm:h-18 text-lg sm:text-xl font-black shadow-2xl shadow-black/20">
                 Get Free Quote <ArrowRight className="ml-2 h-5 w-5" />

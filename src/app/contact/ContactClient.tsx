@@ -22,6 +22,7 @@ import Badge from "@/components/ui/Badge";
 import SectionWrapper from "@/components/SectionWrapper";
 import { cn } from "@/lib/utils";
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from "@/lib/animations";
+import { CONTACT_EMAILS } from "@/constants";
 
 type ContactFormData = {
   firstName: string;
@@ -63,7 +64,7 @@ export default function ContactClient() {
       <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-dark pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/contact_hero_bg.png"
+            src="/images/contact_hero_bg.webp"
             alt="Contact Us"
             fill
             className="object-cover opacity-20"
@@ -108,7 +109,7 @@ export default function ContactClient() {
           >
             {[
               { icon: Phone, title: "Phone", details: ["+1 (555) 123-4567", "+1 (555) 987-6543"], bgColor: "bg-blue-50", iconColor: "text-blue-600" },
-              { icon: Mail, title: "Email", details: ["info@taprimehaul.com", "support@taprimehaul.com"], bgColor: "bg-emerald-50", iconColor: "text-emerald-600" },
+              { icon: Mail, title: "Email", details: [CONTACT_EMAILS.primary, CONTACT_EMAILS.secondary], bgColor: "bg-emerald-50", iconColor: "text-emerald-600" },
               { icon: MapPin, title: "Headquarters", details: ["123 Logistics Way", "Transport City, TC 10001"], bgColor: "bg-orange-50", iconColor: "text-orange-600" },
               { icon: Clock, title: "Business Hours", details: ["Mon - Fri: 8AM - 6PM", "Sat: 9AM - 2PM"], bgColor: "bg-purple-50", iconColor: "text-purple-600" }
             ].map((card, i) => (
@@ -123,7 +124,13 @@ export default function ContactClient() {
                 <h3 className="text-xl font-bold text-dark font-syne">{card.title}</h3>
                 <div className="space-y-1">
                   {card.details.map((detail, dIdx) => (
-                    <p key={dIdx} className="text-sm font-medium text-gray-500">{detail}</p>
+                    card.title === "Email" ? (
+                      <a key={dIdx} href={`mailto:${detail}`} className="block text-sm font-medium text-gray-500 hover:text-primary transition-colors">
+                        {detail}
+                      </a>
+                    ) : (
+                      <p key={dIdx} className="text-sm font-medium text-gray-500">{detail}</p>
+                    )
                   ))}
                 </div>
               </motion.div>
@@ -174,7 +181,7 @@ export default function ContactClient() {
                     <input
                       {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                       type="email"
-                      placeholder="john@company.com"
+                      placeholder="operations@taprimehaul.com"
                       className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
                     />
                     {errors.email && <span className="text-xs text-red-500 ml-2">Valid email required</span>}
@@ -251,7 +258,7 @@ export default function ContactClient() {
             >
               <div className="relative aspect-video w-full overflow-hidden rounded-[2.5rem] shadow-2xl group border border-gray-100">
                 <Image
-                  src="/images/world_map_placeholder.png"
+                  src="/images/world_map_placeholder.webp"
                   alt="Office Locations Map"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

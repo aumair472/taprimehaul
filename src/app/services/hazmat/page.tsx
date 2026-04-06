@@ -12,7 +12,7 @@ export default function HazmatPage() {
       category="Specialized Services"
       title="Hazmat Transport"
       intro="Safe, compliant, and carefully managed hazardous material transport for sensitive freight categories."
-      heroImage="/images/services/road_freight.png"
+      heroImage="/images/services/road_freight.webp"
       heroAlt="Hazardous materials transport"
       stats={[
         { value: "Compliant", label: "Handling" },

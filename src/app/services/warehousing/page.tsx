@@ -12,7 +12,7 @@ export default function WarehousingPage() {
       category="Specialized Services"
       title="Warehousing & Distribution"
       intro="Secure storage, inventory visibility, and distribution support for businesses that need dependable logistics space."
-      heroImage="/images/services/warehousing.png"
+      heroImage="/images/services/warehousing.webp"
       heroAlt="Warehousing and distribution"
       stats={[
         { value: "Secure", label: "Storage" },

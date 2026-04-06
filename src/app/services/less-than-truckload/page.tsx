@@ -12,7 +12,7 @@ export default function LessThanTruckloadPage() {
       category="Freight Brokerage Services"
       title="Less Than Truckload (LTL)"
       intro="A flexible and cost-effective solution for smaller shipments that only need part of a trailer."
-      heroImage="/images/services/road_freight.png"
+      heroImage="/images/services/road_freight.webp"
       heroAlt="Less than truckload freight"
       stats={[
         { value: "Shared", label: "Trailer Space" },

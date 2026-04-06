@@ -20,7 +20,7 @@ const Newsletter = () => {
               Stay ahead in <span className="text-primary italic">logistics</span>
             </h2>
             <p className="text-text-muted">
-              Subscribe to our newsletter for the latest industry insights, supply chain tips, and SwiftLogix updates.
+              Subscribe to our newsletter for the latest industry insights, supply chain tips, and TA Prime Haul updates.
             </p>
           </div>
 

@@ -18,8 +18,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Taul Prime Haul | taprimehaul.com",
-  description: "Taul Prime Haul (taprimehaul.com) provides reliable freight, warehousing, and supply chain solutions for modern businesses.",
+  title: "TA Prime Haul LLC",
+  description: "Professional freight & logistics. Moving America Forward.",
 };
 
 export default function RootLayout({

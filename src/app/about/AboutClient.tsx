@@ -34,7 +34,7 @@ const values = [
 ];
 
 const timeline = [
-  { year: "2010", title: "Company Founded", desc: "SwiftLogix started as a small local courier with 3 trucks and a vision." },
+  { year: "2010", title: "Company Founded", desc: "TA Prime Haul started as a small local courier with 3 trucks and a vision." },
   { year: "2014", title: "National Expansion", desc: "Expanded operations to cover all major cities and coastal ports." },
   { year: "2016", title: "Tech Platform Launch", desc: "Introduced our proprietary real-time tracking and routing platform." },
   { year: "2019", title: "International Growth", desc: "Opened international offices and established global shipping networks." },
@@ -47,7 +47,7 @@ export default function AboutClient() {
       <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-dark pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/about_hero_bg.png"
+            src="/images/about_hero_bg.webp"
             alt="Logistics Center"
             fill
             className="object-cover opacity-30"
@@ -113,7 +113,7 @@ export default function AboutClient() {
               </h2>
               <div className="space-y-6 text-lg font-medium text-gray-500 leading-relaxed">
                 <p>
-                  Founded in 2010, SwiftLogix began with a simple goal: to make shipping easier for small businesses. What started as local delivery service with just three trucks has grown into a global logistics powerhouse serving over 150 countries.
+                  Founded in 2010, TA Prime Haul began with a simple goal: to make shipping easier for small businesses. What started as local delivery service with just three trucks has grown into a global logistics powerhouse serving over 150 countries.
                 </p>
                 <p>
                   Throughout our journey, we&apos;ve remained true to our core principles of transparency and efficiency. By investing heavily in proprietary technology early on, we revolutionized how freight is tracked and managed, setting new standards for the entire industry.
@@ -127,7 +127,7 @@ export default function AboutClient() {
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 sm:h-14 sm:w-14 overflow-hidden rounded-full ring-2 ring-primary/20 shadow-lg shrink-0">
-                    <Image src="/images/ceo_avatar.png" alt="Saiki Mitchell" fill className="object-cover" />
+                    <Image src="/images/ceo_avatar.webp" alt="Saiki Mitchell" fill className="object-cover" />
                   </div>
                   <div>
                     <h4 className="font-bold text-dark text-sm sm:text-base">Saiki Mitchell</h4>
@@ -145,8 +145,8 @@ export default function AboutClient() {
               className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.5rem] shadow-2xl"
             >
               <Image
-                src="/images/why_choose_us.png"
-                alt="SwiftLogix Team"
+                src="/images/why_choose_us.webp"
+                alt="TA Prime Haul Team"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
