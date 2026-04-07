@@ -11,10 +11,11 @@ import {
   MapPin,
   Clock,
   Send,
-  Truck,
-  Box,
   MessageSquare,
-  ArrowRight
+  ArrowRight,
+  ChevronRight,
+  CheckCircle2,
+  Globe
 } from "lucide-react";
 
 import Button from "@/components/ui/Button";
@@ -22,11 +23,10 @@ import Badge from "@/components/ui/Badge";
 import SectionWrapper from "@/components/SectionWrapper";
 import { cn } from "@/lib/utils";
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from "@/lib/animations";
-import { CONTACT_EMAILS } from "@/constants";
+import { SITE_CONFIG } from "@/constants";
 
 type ContactFormData = {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   phone: string;
   company: string;
@@ -34,293 +34,364 @@ type ContactFormData = {
   message: string;
 };
 
-const offices = [
-  { city: "New York", address: "232 5th Avenue, Suite 4500", phone: "+1 (212) 555-0100" },
-  { city: "Los Angeles", address: "8440 Santa Monica Blvd", phone: "+1 (310) 555-0200" },
-  { city: "Chicago", address: "222 S Wacker Drive", phone: "+1 (312) 555-0300" },
-  { city: "London", address: "22-24 Marylebone High St", phone: "+44 20 7123 4567" }
-];
-
 export default function ContactClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>();
 
   const onSubmit = async (_data: ContactFormData) => {
     setIsSubmitting(true);
-
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-
     toast.success("Message sent successfully!", {
       description: "Our team will get back to you within 24 hours.",
     });
-
     reset();
     setIsSubmitting(false);
   };
 
+  const contactCards = [
+    {
+      icon: Phone,
+      title: "Call Us",
+      description: "Available for immediate support during business hours.",
+      details: [SITE_CONFIG.phone],
+      link: `tel:${SITE_CONFIG.phoneRaw}`,
+      ariaLabel: "Call Taprime Haul",
+      color: "from-blue-500/20 to-blue-600/20",
+      iconColor: "text-blue-400"
+    },
+    {
+      icon: Mail,
+      title: "Email Us",
+      description: "Send us an email for general inquiries or quotes.",
+      details: [SITE_CONFIG.email.primary, SITE_CONFIG.email.secondary],
+      link: `mailto:${SITE_CONFIG.email.primary}`,
+      ariaLabel: "Email Taprime Haul",
+      color: "from-emerald-500/20 to-emerald-600/20",
+      iconColor: "text-emerald-400"
+    },
+    {
+      icon: MapPin,
+      title: "Our Office",
+      description: "Visit our headquarters in Prosper, Texas.",
+      details: [
+        "16613 Amistad Ave suite# 100",
+        "Prosper, TX 75078",
+        "USA"
+      ],
+      link: "https://maps.google.com/?q=16613+Amistad+Ave+Prosper+TX+75078",
+      ariaLabel: "View our location on Google Maps",
+      color: "from-orange-500/20 to-orange-600/20",
+      iconColor: "text-orange-400"
+    },
+    {
+      icon: Clock,
+      title: "Business Hours",
+      description: "Our dedicated team is here to help you weekday.",
+      details: ["Monday to Friday", "6:00 AM – 5:00 PM"],
+      link: null,
+      ariaLabel: null,
+      color: "from-purple-500/20 to-purple-600/20",
+      iconColor: "text-purple-400"
+    }
+  ];
+
   return (
-    <main className="flex flex-col">
-      <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-dark pt-32 pb-20">
+    <main className="flex flex-col bg-dark overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative flex min-h-[70vh] items-center justify-center pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
+          <div className="absolute inset-x-0 top-0 h-[800px] bg-gradient-to-b from-primary/10 via-transparent to-transparent opacity-30 blur-[100px]" />
           <Image
             src="/images/contact_hero_bg.webp"
-            alt="Contact Us"
+            alt="Logistics background"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-10"
             priority
-            sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-dark/50 via-dark/30 to-dark/10" />
+          <div className="absolute inset-0 bg-dark/30" />
         </div>
 
         <div className="container relative z-10 mx-auto px-6 lg:px-12 text-center">
           <motion.div initial="initial" animate="animate" variants={fadeInUp}>
-            <Badge variant="primary" className="mb-6">Contact Us</Badge>
+            <Badge variant="primary" className="mb-6 uppercase tracking-widest px-6 py-2">Get in Touch</Badge>
           </motion.div>
 
           <motion.h1
             initial="initial"
             animate="animate"
             variants={fadeInUp}
-            className="mb-6 mx-auto text-4xl font-bold leading-tight text-white font-syne sm:text-6xl lg:text-8xl tracking-tight"
+            className="mb-8 mx-auto text-5xl font-bold leading-[1.1] text-white font-syne sm:text-7xl lg:text-8xl xl:text-9xl tracking-[-(0.05em)]"
           >
-            Let&apos;s Start a <br /> Conversation
+            Ready to <span className="text-primary italic">Connect.</span>
           </motion.h1>
 
           <motion.p
             initial="initial"
             animate="animate"
             variants={fadeInUp}
-            className="mb-8 max-w-2xl mx-auto text-lg sm:text-xl font-medium text-text-muted"
+            className="mb-12 max-w-3xl mx-auto text-lg sm:text-xl md:text-2xl font-medium text-white/50 leading-relaxed"
           >
-            Have questions? Need a quote? Our team is here to help you with all your logistics needs.
+            Efficiency doesn&apos;t happen by accident. It starts with a conversation. Reach out and let&apos;s streamline your supply chain together.
           </motion.p>
+
+          <motion.div initial="initial" animate="animate" variants={fadeInUp} className="flex justify-center gap-4">
+            <Button size="lg" className="rounded-full h-16 px-10 text-lg group" asChild>
+              <a href="#contact-form">
+                Start Now <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
-      <section className="-mt-16 sm:-mt-20 relative z-20 pb-16 transition-all">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+      {/* Contact Grid */}
+      <section className="relative z-20 pb-32 mt-20">
+        <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial="initial"
-            animate="animate"
+            whileInView="animate"
+            viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
           >
-            {[
-              { icon: Phone, title: "Phone", details: ["+1 (555) 123-4567", "+1 (555) 987-6543"], bgColor: "bg-blue-50", iconColor: "text-blue-600" },
-              { icon: Mail, title: "Email", details: [CONTACT_EMAILS.primary, CONTACT_EMAILS.secondary], bgColor: "bg-emerald-50", iconColor: "text-emerald-600" },
-              { icon: MapPin, title: "Headquarters", details: ["123 Logistics Way", "Transport City, TC 10001"], bgColor: "bg-orange-50", iconColor: "text-orange-600" },
-              { icon: Clock, title: "Business Hours", details: ["Mon - Fri: 8AM - 6PM", "Sat: 9AM - 2PM"], bgColor: "bg-purple-50", iconColor: "text-purple-600" }
-            ].map((card, i) => (
+            {contactCards.map((card, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="flex flex-col gap-4 rounded-[2.5rem] bg-white p-6 sm:p-8 shadow-xl shadow-black/5 border border-gray-100 hover:-translate-y-1 transition-transform"
+                className="group relative flex flex-col gap-6 rounded-[2.5rem] bg-white/5 border border-white/10 p-8 transition-all hover:bg-white/[0.08]"
               >
-                <div className={cn("flex h-12 w-12 items-center justify-center rounded-2xl", card.bgColor, card.iconColor)}>
-                  <card.icon className="h-6 w-6" />
+                <div className={cn("flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br shadow-xl", card.color)}>
+                  <card.icon className={cn("h-8 w-8", card.iconColor)} />
                 </div>
-                <h3 className="text-xl font-bold text-dark font-syne">{card.title}</h3>
-                <div className="space-y-1">
-                  {card.details.map((detail, dIdx) => (
-                    card.title === "Email" ? (
-                      <a key={dIdx} href={`mailto:${detail}`} className="block text-sm font-medium text-gray-500 hover:text-primary transition-colors">
-                        {detail}
+
+                <div>
+                  <h3 className="text-2xl font-bold text-white font-syne mb-2 tracking-tight">{card.title}</h3>
+                  <p className="text-sm font-medium text-white/40 mb-6 leading-relaxed">{card.description}</p>
+                </div>
+
+                <div className="mt-auto space-y-3">
+                  {card.title === "Our Office" ? (
+                    <div className="space-y-1">
+                      {card.details.map((line, lIdx) => (
+                        <p key={lIdx} className="text-sm font-medium text-white/90 leading-relaxed whitespace-normal break-words">
+                          {line}
+                        </p>
+                      ))}
+                      <a
+                        href={card.link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 mt-4 text-[10px] font-black uppercase tracking-widest text-primary hover:text-white transition-colors group/map"
+                      >
+                        View on Map <ArrowRight className="h-3 w-3 transition-transform group-hover/map:translate-x-1" />
                       </a>
-                    ) : (
-                      <p key={dIdx} className="text-sm font-medium text-gray-500">{detail}</p>
-                    )
-                  ))}
+                    </div>
+                  ) : (
+                    card.details.map((detail, dIdx) => (
+                      card.link ? (
+                        <a
+                          key={dIdx}
+                          href={card.link}
+                          aria-label={card.ariaLabel || undefined}
+                          className="flex items-start gap-2 text-base font-bold text-white hover:text-primary transition-colors group/link"
+                        >
+                          <span className="shrink-0">{detail}</span>
+                          <ArrowRight className="h-4 w-4 mt-1 text-s -rotate-45 opacity-0 transition-all group-hover/link:opacity-100 group-hover/link:translate-x-1" />
+                        </a>
+                      ) : (
+                        <p key={dIdx} className="text-base font-bold text-white/90">{detail}</p>
+                      )
+                    ))
+                  )}
                 </div>
+
+                {/* Decorative element */}
+                <div className="absolute top-4 right-4 h-2 w-2 rounded-full bg-white/10 group-hover:bg-primary/50 transition-colors" />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <SectionWrapper className="bg-white">
+      {/* Main Content: Form & Map */}
+      <section id="contact-form" className="relative pb-40">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-            <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={fadeInLeft}>
-              <div className="mb-4 inline-flex items-center rounded-full bg-orange-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
-                Get in Touch
-              </div>
-              <h2 className="mb-6 text-3xl font-bold text-dark font-syne sm:text-4xl lg:text-6xl tracking-tight leading-tight">
-                Send Us a Message
-              </h2>
-              <p className="mb-10 text-lg font-medium text-gray-500">
-                Fill out the form below and our team will get back to you within 24 hours.
-              </p>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 items-start">
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-dark ml-2">First Name</label>
-                    <input
-                      {...register("firstName", { required: true })}
-                      placeholder="John"
-                      className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
-                    />
-                    {errors.firstName && <span className="text-xs text-red-500 ml-2">Required</span>}
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-dark ml-2">Last Name</label>
-                    <input
-                      {...register("lastName", { required: true })}
-                      placeholder="Doe"
-                      className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
-                    />
-                    {errors.lastName && <span className="text-xs text-red-500 ml-2">Required</span>}
-                  </div>
-                </div>
+            {/* Form Side */}
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInLeft}
+              className="lg:col-span-7 bg-white/[0.03] border border-white/10 rounded-[3rem] p-8 sm:p-12 lg:p-16"
+            >
+              <div className="max-w-2xl">
+                <Badge variant="primary" className="mb-6 opacity-80">Message Us</Badge>
+                <h2 className="mb-6 text-4xl font-bold text-white font-syne sm:text-6xl tracking-tight leading-tight">
+                  Have a <span className="text-primary">Project</span> In Mind?
+                </h2>
+                <p className="mb-12 text-lg font-medium text-white/40 leading-relaxed">
+                  Send us your details and shipping requirements. Our logistics specialized will provide a custom solution tailored to your needs.
+                </p>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-dark ml-2">Email</label>
-                    <input
-                      {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                      type="email"
-                      placeholder="operations@taprimehaul.com"
-                      className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
-                    />
-                    {errors.email && <span className="text-xs text-red-500 ml-2">Valid email required</span>}
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                    <div className="space-y-3">
+                      <label htmlFor="name" className="text-xs font-black uppercase tracking-widest text-primary ml-1">Full Name</label>
+                      <input
+                        {...register("name", { required: true })}
+                        id="name"
+                        placeholder="John Doe"
+                        className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-white placeholder:text-white/20 outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all"
+                      />
+                      {errors.name && <span className="text-[10px] uppercase font-bold text-red-500 ml-1">Required field</span>}
+                    </div>
+                    <div className="space-y-3">
+                      <label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-primary ml-1">Email Address</label>
+                      <input
+                        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+                        id="email"
+                        type="email"
+                        placeholder="jhon@example.com"
+                        className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-white placeholder:text-white/20 outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all"
+                      />
+                      {errors.email && <span className="text-[10px] uppercase font-bold text-red-500 ml-1">Valid email required</span>}
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-dark ml-2">Phone</label>
-                    <input
-                      {...register("phone")}
-                      placeholder="+1 (555) 000-0000"
-                      className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-dark ml-2">Company</label>
-                    <input
-                      {...register("company")}
-                      placeholder="Your Company"
-                      className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-dark ml-2">Service Interested In</label>
-                    <div className="relative">
-                      <select
-                        {...register("service")}
-                        className="w-full appearance-none rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all text-sm @sm:text-base"
-                      >
-                        <option value="">Select a service</option>
-                        <option value="road">Road Freight</option>
-                        <option value="ocean">Ocean Freight</option>
-                        <option value="air">Air Freight</option>
-                        <option value="warehouse">Warehousing</option>
-                        <option value="lastmile">Last Mile Delivery</option>
-                        <option value="supply">Supply Chain</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-6 flex items-center">
-                        <ArrowRight className="h-4 w-4 rotate-90 text-primary" />
+                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                    <div className="space-y-3">
+                      <label htmlFor="phone" className="text-xs font-black uppercase tracking-widest text-primary ml-1">Phone Number</label>
+                      <input
+                        {...register("phone")}
+                        id="phone"
+                        placeholder="(469) 000-0000"
+                        className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-white placeholder:text-white/20 outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label htmlFor="service" className="text-xs font-black uppercase tracking-widest text-primary ml-1">Interested Service</label>
+                      <div className="relative">
+                        <select
+                          {...register("service")}
+                          id="service"
+                          className="w-full appearance-none rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-white outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all cursor-pointer"
+                        >
+                          <option value="" className="bg-dark text-white">Select a service</option>
+                          <option value="freight" className="bg-dark text-white">Freight Forwarding</option>
+                          <option value="warehousing" className="bg-dark text-white">Warehousing</option>
+                          <option value="lastmile" className="bg-dark text-white">Last Mile Delivery</option>
+                          <option value="customs" className="bg-dark text-white">Customs Brokerage</option>
+                        </select>
+                        <ChevronRight className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 h-5 w-5 rotate-90 text-primary" />
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-dark ml-2">Message</label>
-                  <textarea
-                    {...register("message", { required: true })}
-                    rows={4}
-                    placeholder="Tell us about your logistics needs..."
-                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4 text-dark outline-none focus:border-primary transition-all resize-none text-sm @sm:text-base"
-                  />
-                  {errors.message && <span className="text-xs text-red-500 ml-2">Required</span>}
-                </div>
+                  <div className="space-y-3">
+                    <label htmlFor="message" className="text-xs font-black uppercase tracking-widest text-primary ml-1">Your Message</label>
+                    <textarea
+                      {...register("message", { required: true })}
+                      id="message"
+                      rows={5}
+                      placeholder="Tell us about your logistics needs..."
+                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-white placeholder:text-white/20 outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all resize-none"
+                    />
+                    {errors.message && <span className="text-[10px] uppercase font-bold text-red-500 ml-1">Please enter your message</span>}
+                  </div>
 
-                <Button
-                  size="lg"
-                  type="submit"
-                  className={cn("w-full rounded-2xl h-16 text-lg shadow-xl shadow-primary/20 transition-all", isSubmitting && "opacity-70 scale-[0.98]")}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"} <Send className="ml-2 h-5 w-5 transition-transform" />
-                </Button>
-              </form>
+                  <Button
+                    size="lg"
+                    type="submit"
+                    className={cn(
+                      "w-full rounded-2xl h-20 text-xl font-bold font-syne tracking-widest uppercase transition-all shadow-2xl shadow-primary/20",
+                      isSubmitting && "opacity-70 scale-[0.98]"
+                    )}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Request a Quote"}
+                    <Send className={cn("ml-3 h-6 w-6 transition-transform", !isSubmitting && "group-hover:translate-x-1 group-hover:-translate-y-1")} />
+                  </Button>
+                </form>
+              </div>
             </motion.div>
 
+            {/* Map & Social Side */}
             <motion.div
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
               variants={fadeInRight}
-              className="flex flex-col gap-10"
+              className="lg:col-span-5 space-y-8"
             >
-              <div className="relative aspect-video w-full overflow-hidden rounded-[2.5rem] shadow-2xl group border border-gray-100">
-                <Image
-                  src="/images/world_map_placeholder.webp"
-                  alt="Office Locations Map"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+              <div id="map" className="relative aspect-[4/5] lg:aspect-auto lg:h-[600px] w-full overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <iframe
+                  src={SITE_CONFIG.googleMapsEmbed}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="TA Prime Haul Office Location"
+                  className="rounded-[3rem]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-dark/20 to-transparent" />
-                <div className="absolute top-[40%] left-[25%] flex flex-col items-center">
-                  <div className="relative h-10 w-10 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping" />
-                    <MapPin className="h-8 w-8 text-primary relative z-10" />
+
+                <div className="absolute bottom-8 left-8 right-8">
+                  <div className="bg-dark/80 backdrop-blur-xl border border-white/10 p-6 rounded-3xl">
+                    <p className="text-xs font-black text-primary uppercase tracking-tighter mb-1">Our Location</p>
+                    <p className="text-sm font-bold text-white leading-tight">
+                      16613 Amistad Ave, Suite 100 <br />
+                      Prosper, TX 75078
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div>
-                <h3 className="mb-6 text-2xl font-bold text-dark font-syne">Our Global Offices</h3>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {offices.map((office, i) => (
-                    <motion.div
-                      key={i}
-                      whileHover={{ y: -5 }}
-                      className="rounded-3xl border border-gray-100 bg-gray-50/50 p-6 transition-all hover:bg-white hover:shadow-xl hover:shadow-black/5"
-                    >
-                      <h4 className="flex items-center gap-2 font-bold text-dark font-syne mb-2">
-                        <MapPin className="h-4 w-4 text-primary" /> {office.city}
-                      </h4>
-                      <p className="text-xs sm:text-sm font-medium text-gray-500 mb-2">{office.address}</p>
-                      <p className="text-sm font-bold text-primary">{office.phone}</p>
-                    </motion.div>
-                  ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Globe className="h-5 w-5 text-primary" />
+                    <h4 className="text-lg font-bold text-white font-syne">Global Network</h4>
+                  </div>
+                  <p className="text-sm font-medium text-white/40 leading-relaxed">Connecting businesses through our extensive logistics infrastructure.</p>
+                </div>
+                <div className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <h4 className="text-lg font-bold text-white font-syne">Reliable Partner</h4>
+                  </div>
+                  <p className="text-sm font-medium text-white/40 leading-relaxed">Trusted by hundreds of companies for timely and secure deliveries.</p>
                 </div>
               </div>
             </motion.div>
+
           </div>
         </div>
-      </SectionWrapper>
+      </section>
 
-      <section className="bg-white pb-32">
-        <div className="container mx-auto px-6 lg:px-12">
-          <SectionWrapper variant="staggerContainer" className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3 py-0 lg:py-0">
-            {[
-              { title: "For Carriers", icon: Truck, bg: "bg-blue-50", text: "text-blue-600", desc: "Join our network and access premium freight and reliable payouts." },
-              { title: "For Shippers", icon: Box, bg: "bg-emerald-50", text: "text-emerald-600", desc: "Streamline your shipping operations with our intelligent platform." },
-              { title: "Support", icon: MessageSquare, bg: "bg-orange-50", text: "text-primary", desc: "24/7 customer service available for all your urgent logistics needs." }
-            ].map((card, i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className="flex flex-col items-center rounded-[2.5rem] sm:rounded-[3rem] border border-gray-100 bg-white p-8 sm:p-10 text-center shadow-xl shadow-black/5 transition-all"
-              >
-                <div className={cn("mb-6 flex h-16 w-16 items-center justify-center rounded-2xl transition-transform", card.bg, card.text)}>
-                  <card.icon className="h-8 w-8" />
-                </div>
-                <h4 className="text-2xl font-bold text-dark font-syne mb-4">{card.title}</h4>
-                <p className="text-sm font-medium text-gray-500 mb-6 flex-grow">{card.desc}</p>
-                <Button variant="ghost" className="text-primary font-bold hover:bg-primary/5 rounded-full px-8 group transition-colors">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </motion.div>
-            ))}
-          </SectionWrapper>
+      {/* CTA Bottom */}
+      <section className="bg-primary py-24">
+        <div className="container mx-auto px-6 lg:px-12 text-center">
+          <h2 className="text-4xl sm:text-6xl font-bold text-dark font-syne mb-10 tracking-tight">Need Urgent Support?</h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a
+              href={`tel:${SITE_CONFIG.phoneRaw}`}
+              className="flex items-center gap-4 bg-dark text-white px-10 py-6 rounded-full text-2xl font-bold group transition-all hover:scale-105 active:scale-95"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-dark">
+                <Phone className="h-6 w-6" />
+              </div>
+              {SITE_CONFIG.phone}
+            </a>
+            <a
+              href={`mailto:${SITE_CONFIG.email.primary}`}
+              className="flex items-center gap-4 border-4 border-dark text-dark px-10 py-6 rounded-full text-2xl font-bold hover:bg-dark hover:text-white transition-all active:scale-95"
+            >
+              Connect via Email
+            </a>
+          </div>
         </div>
       </section>
     </main>

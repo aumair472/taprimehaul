@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Clock } from "lucide-react";
 import Newsletter from "./Newsletter";
-import { CONTACT_EMAILS } from "@/constants";
+import { SITE_CONFIG } from "@/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,14 +17,21 @@ const Footer = () => {
           {/* Brand & Socials */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2">
-              <span className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center font-bold text-white text-xl">S</span>
+              <div className="relative h-8 w-8 overflow-hidden">
+                <Image 
+                  src="/logo.png" 
+                  alt={SITE_CONFIG.name} 
+                  fill 
+                  className="object-contain"
+                />
+              </div>
               <span className="text-2xl font-bold tracking-tight text-white font-syne">
                 TA<span className="text-primary font-dm-sans">PRIME</span>
                 HAUL
               </span>
             </Link>
             <p className="text-sm font-medium leading-relaxed text-text-muted">
-              Pioneering the future of logistics with tech-driven solutions. TA Prime Haul provides reliable, efficient, and transparent supply chain management for global businesses.
+              Pioneering the future of logistics with tech-driven solutions. {SITE_CONFIG.name} provides reliable, efficient, and transparent supply chain management for global businesses.
             </p>
             <div className="flex items-center gap-4">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, idx) => (
@@ -58,7 +66,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 text-sm font-medium text-text-muted">
               {["About Us", "Our Team", "Careers", "Case Studies", "Blog", "Contact"].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="transition-colors hover:text-primary">
+                  <Link href={item === "Contact" ? "/contact" : "#"} className="transition-colors hover:text-primary">
                     {item}
                   </Link>
                 </li>
@@ -72,24 +80,37 @@ const Footer = () => {
             <ul className="flex flex-col gap-6 text-sm font-medium text-text-muted">
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                <span>123 Logistics Way, Suite 500,<br />Chicago, IL 60601, USA</span>
+                <span>{SITE_CONFIG.address}</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-primary" />
-                <span>+1 (800) 555-SWIFT</span>
+              <li>
+                <a
+                  href={`tel:${SITE_CONFIG.phoneRaw}`}
+                  aria-label="Call Taprime Haul"
+                  className="flex items-center gap-3 transition-colors hover:text-primary group"
+                >
+                  <Phone className="h-5 w-5 text-primary" />
+                  <span className="font-bold text-white group-hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4 ring-primary/20">
+                    {SITE_CONFIG.phone}
+                  </span>
+                </a>
               </li>
               <li className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-primary shrink-0" />
-                  <a href={`mailto:${CONTACT_EMAILS.primary}`} className="hover:text-primary transition-colors">
-                    {CONTACT_EMAILS.primary}
+                  <a href={`mailto:${SITE_CONFIG.email.primary}`} className="hover:text-primary transition-colors">
+                    {SITE_CONFIG.email.primary}
                   </a>
                 </div>
-                <div className="ml-8">
-                  <a href={`mailto:${CONTACT_EMAILS.secondary}`} className="hover:text-primary transition-colors">
-                    {CONTACT_EMAILS.secondary}
+                <div className="flex items-center gap-3 ml-0">
+                   <Mail className="h-5 w-5 text-primary shrink-0 opacity-0" />
+                  <a href={`mailto:${SITE_CONFIG.email.secondary}`} className="hover:text-primary transition-colors">
+                    {SITE_CONFIG.email.secondary}
                   </a>
                 </div>
+              </li>
+              <li className="flex items-center gap-3 text-white/50">
+                <Clock className="h-5 w-5 text-primary shrink-0" />
+                <span>{SITE_CONFIG.hours}</span>
               </li>
             </ul>
           </div>
@@ -98,7 +119,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-white/5 pt-8 lg:flex-row">
           <p className="text-xs font-medium text-text-muted">
-            © {currentYear} Taprimehaul. All rights reserved.
+            © {currentYear} {SITE_CONFIG.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-8 text-xs font-medium text-text-muted">
             <Link href="#" className="transition-colors hover:text-white">Privacy Policy</Link>
